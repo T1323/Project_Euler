@@ -15,20 +15,25 @@ for i in abundantList:
     if i % 2 == 1:
         Oddabundant.append(i)
 
-for i in Total:
-    if i % 2 == 0:
+answer = 0
+
+for j in Total:
+    isAdd = True
+    if j % 2 == 0:
         index = 1
-        while abundantList[index] <= (i / 2):
-            if (i - abundantList[index]) in abundantList:
-                Total.remove(i)
+        while abundantList[index] <= (j / 2):
+            if (j - abundantList[index]) in abundantList:
+                isAdd = False
                 break
             index += 1
     else:
         index = 0
-        while Oddabundant[index] < i:
-            if(i - Oddabundant[index]) in abundantList:
-                Total.remove(i)
+        while Oddabundant[index] < j:
+            if (j - Oddabundant[index]) in abundantList:
+                isAdd = False
                 break
             index += 1
+    if isAdd:
+        answer += j
 
-print(sum(Total))
+print(answer)
